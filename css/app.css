@@ -1,0 +1,283 @@
+/* ========================================
+   従業員ステータスアプリ - スタイル
+   スマホファースト・モダンデザイン
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+:root {
+    --header-bg: #1a2744;
+    --header-text: #ffffff;
+    --body-bg: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #6b7280;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --radius: 16px;
+    --radius-sm: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--body-bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== アプリコンテナ ===== */
+.app-container {
+    min-height: 100dvh;
+    background: var(--body-bg);
+}
+
+.status-app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== ヘッダー ===== */
+.app-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-icon {
+    font-size: 24px;
+}
+
+.app-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* ===== ローディング ===== */
+.loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top-color: var(--header-bg);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== ユーザー情報 ===== */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px 16px;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--header-bg);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    box-shadow: var(--shadow-md);
+}
+
+.user-name {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.user-dept {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===== 現在のステータス ===== */
+.current-status {
+    margin: 16px 20px;
+    padding: 24px;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.4s ease;
+}
+
+.status-icon {
+    font-size: 40px;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.status-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.status-value {
+    font-size: 28px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.status-time {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* ===== ステータスボタン ===== */
+.status-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 20px 32px;
+}
+
+.status-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 12px;
+    border: 2px solid var(--btn-color);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.status-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: var(--btn-bg);
+}
+
+.status-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.status-btn.active {
+    background: var(--btn-color);
+    box-shadow: var(--shadow-md);
+}
+
+.status-btn.active .btn-icon,
+.status-btn.active .btn-text {
+    color: white !important;
+}
+
+.status-btn:disabled {
+    cursor: default;
+}
+
+.btn-icon {
+    font-size: 24px;
+    transition: color 0.2s ease;
+}
+
+.btn-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+}
+
+/* ===== エラーメッセージ ===== */
+.error-message {
+    margin: 0 20px 20px;
+    padding: 12px 16px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-sm);
+    color: #dc2626;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.error-close {
+    background: none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+}
+
+/* ===== データなし ===== */
+.no-user {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    padding: 40px;
+    text-align: center;
+}
+
+/* ===== PWA対応: セーフエリア ===== */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .app-header {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    .status-buttons {
+        padding-bottom: calc(32px + env(safe-area-inset-bottom));
+    }
+}
